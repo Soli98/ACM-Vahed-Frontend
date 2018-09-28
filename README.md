@@ -1,2 +1,0 @@
-# Vahed-Frontend
-
