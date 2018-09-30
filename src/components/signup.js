@@ -6,7 +6,6 @@ import {
     Paper,
     Button,
     TextField,
-    MenuItem,
     Select,
     FormControl,
     InputLabel,
@@ -81,6 +80,24 @@ export class SignupForm extends Component {
                   }}>
                       <Field
                           fullWidth={true}
+                          name="email"
+                          component={this.renderTextField}
+                          type="email"
+                          label="ایمیل"
+                          inputProps={{
+                              style: {
+                                  direction: 'ltr',
+                              }
+                          }}
+                          required
+                      />
+                  </div>
+
+                  <div style={{
+                      margin: '10px auto',
+                  }}>
+                      <Field
+                          fullWidth={true}
                           name="username"
                           component={this.renderTextField}
                           type="text"
@@ -93,6 +110,7 @@ export class SignupForm extends Component {
                           required
                       />
                   </div>
+
                   <div style={{
                       margin: '10px auto',
                   }}>
@@ -110,45 +128,7 @@ export class SignupForm extends Component {
                           required
                           />
                   </div>
-                  <div style={{
-                      margin: '10px auto',
-                  }}>
-                      <Field
-                          fullWidth={true}
-                          name="email"
-                          component={this.renderTextField}
-                          type="email"
-                          label="ایمیل"
-                          inputProps={{
-                            style: {
-                                direction: 'ltr',
-                            }
-                          }}
-                          required
-                          />
-                  </div>
-                  <div style={{
-                      margin: '10px auto',
-                  }}>
-                      <Field
-                          fullWidth={true}
-                          name="first_name"
-                          component={this.renderTextField}
-                          type="text"
-                          label="نام"
-                          />
-                  </div>
-                  <div style={{
-                      margin: '10px auto',
-                  }}>
-                      <Field
-                          fullWidth={true}
-                          name="last_name"
-                          component={this.renderTextField}
-                          type="text"
-                          label="نام خانوادگی"
-                          />
-                  </div>
+
                   <div style={{
                       margin: '10px auto',
                   }}>
@@ -164,52 +144,6 @@ export class SignupForm extends Component {
                             }
                           }}
                           />
-                  </div>
-                  <div style={{
-                      margin: '10px auto',
-                  }}>
-                      <Field
-                          fullWidth={true}
-                          name="entering_year"
-                          component={this.renderTextField}
-                          type="number"
-                          label="سال ورود"
-                          inputProps={{
-                            style: {
-                                direction: 'ltr',
-                            }
-                          }}
-                          />
-                  </div>
-                  <div style={{
-                      margin: '10px auto',
-                  }}>
-                    <Field
-                      name="field"
-                      component={this.renderSelectField}
-                      label="رشته‌ی تحصیلی"
-                      fullWidth={true}
-                    >
-                      <MenuItem value="CE">مهندسی کامپیوتر</MenuItem>
-                      <MenuItem value="EE">مهندسی برق</MenuItem>
-                      <MenuItem value="ME">مهندسی مکانیک</MenuItem>
-                      <MenuItem value="CS">علوم کامپیوتر</MenuItem>
-                      <MenuItem value="other">سایر رشته‌ها</MenuItem>
-                    </Field>
-                  </div>
-                  <div style={{
-                      margin: '10px auto',
-                  }}>
-                    <Field
-                      name="degree"
-                      component={this.renderSelectField}
-                      label="مقطع تحصیلی"
-                      fullWidth={true}
-                    >
-                      <MenuItem value="BS">کارشناسی</MenuItem>
-                      <MenuItem value="MS">کارشناسی ارشد</MenuItem>
-                      <MenuItem value="PHD">دکتری</MenuItem>
-                    </Field>
                   </div>
                   {/* <div>
                     {!!this.props.auth.errorMessage && this.props.auth.errorMessage.username.map((error, i) => {
