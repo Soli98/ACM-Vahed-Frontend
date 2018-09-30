@@ -53,8 +53,12 @@ export class LoginForm extends Component {
 		return (
 			<Paper style={{
 				width: '300px',
-				margin: '0 auto',
+				margin: 'auto',
 				padding: '10px',
+				position: 'absolute',
+				top: '50%',
+				left: '50%',
+  			transform: 'translate(-50%, -50%)',
 			}}>
 				<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 					<Typography variant="subheading" color="inherit" noWrap align="center">
