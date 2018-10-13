@@ -4,18 +4,6 @@ import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@m
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
-  },
-  table: {
-    minWidth: 700,
-  },
-});
-
-
 export class ChosenOfferingsTable extends Component {
   renderOfferings() {
     return this.props.offerings.map(offering => {
@@ -36,7 +24,7 @@ export class ChosenOfferingsTable extends Component {
       )
     });
   }
-  
+
   render() {
     return (
       <div style={{overflowX: 'auto'}}>

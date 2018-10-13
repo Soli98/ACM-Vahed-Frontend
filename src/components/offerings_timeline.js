@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
+import moment from 'moment';
 import { connect } from 'react-redux';
-import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 
 export class OfferingsTimeline extends Component {
   renderDay(num) {
-    const dayOfferings = this.props.offerings.filter(offering => (!!(offering.times[0].day === num) && (!!offering.times[1] && (offering.times[1].day === num))));
-    console.log(dayOfferings)
+    const dayOfferings = this.props.offerings.filter(offering => {
+      return offering.times.filter(o => o.day === num).length > 0;
+    });
+    dayOfferings.sort((a, b) => {
+      return (moment(a.times[0].start, "HH:mm:ss").diff(moment(b.times[0].start, "HH:mm:ss"), 'hours', true) > 0)
+    })
+    dayOfferings.map(offering => {
+      const duration = moment(offering.times[0].finish, "HH:mm:ss").diff(moment(offering.times[0].start, "HH:mm:ss"), 'hours', true);
+
+    })
   }
   render() {
     return (
