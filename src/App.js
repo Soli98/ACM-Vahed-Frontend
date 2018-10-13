@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './components/login';
 import Signup from './components/signup';
-import Plans from './components/plans';
+import Curriculums from './components/curriculums';
+import Dashboard from './components/dashboard';
 
 class App extends Component {
   render() {
@@ -11,7 +12,8 @@ class App extends Component {
         <Switch>
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-          <Route path="/" exact component={Plans} />
+          <Route path="/curriculum" exact component={Curriculums} />
+          <Route path="/curriculum/:id" exact component={Dashboard} />
         </Switch>
       </BrowserRouter>
     );

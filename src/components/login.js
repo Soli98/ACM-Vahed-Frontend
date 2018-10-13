@@ -41,7 +41,7 @@ export class LoginForm extends Component {
 
 	onSubmit(values) {
 		this.props.login(values, () => {
-      this.props.history.push('/curriculums');
+      this.props.history.push('/dashboard');
     });
 	}
 
@@ -69,10 +69,10 @@ export class LoginForm extends Component {
 					}}>
 						<Field
 							fullWidth={true}
-							name="username"
+							name="email"
 							component={this.renderTextField}
-							type="text"
-							label="نام کاربری"
+							type="email"
+							label="ایمیل"
 							inputProps={{
 								style: {
 									direction: 'ltr',
@@ -99,7 +99,7 @@ export class LoginForm extends Component {
 							/>
 					</div>
           <div>
-            {!!this.props.auth.errorMessage && this.props.auth.errorMessage.non_field_errors.map((error, i) => {
+            {this.props.auth.errorMessage && this.props.auth.errorMessage.map((error, i) => {
               return(
                 <li key={i}>
                   {error}

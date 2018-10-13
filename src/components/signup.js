@@ -134,7 +134,7 @@ export class SignupForm extends Component {
                   }}>
                       <Field
                           fullWidth={true}
-                          name="studentNum"
+                          name="sid"
                           component={this.renderTextField}
                           type="number"
                           label="شماره‌ی دانش‌جویی"

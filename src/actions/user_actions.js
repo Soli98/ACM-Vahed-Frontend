@@ -14,22 +14,13 @@ export function login(credentials, callback) {
   return dispatch => {
     dispatch({ type: LOGIN_REQUEST })
     
-    axios.post('/api/login/', credentials).then(res => {
+    axios.post('/api/auth/users/login/', credentials).then(res => {
       localStorage.authToken = res.data.token
       dispatch({
         type: LOGIN_SUCCESS,
-        user: res.data.token
-      })
-    }).then(() => {
-      axios.get(`/api/user/${credentials.username}/`).then(res => {
-        dispatch({
-          type: LOGIN_SUCCESS,
-          user: res.data
-        })
-        callback();
-      }).catch(error => {
-        console.log("ERROR")
-      })
+        user: res.data
+      });
+      callback();
     }).catch(error => {
       dispatch({
         type: LOGIN_FAILURE,
@@ -46,8 +37,8 @@ export function logout() {
 
 export function signup(data) {
   return dispatch => {
-    axios.post('/api/user/', data).then(() => {
-      dispatch(login({username: data.username, password: data.password}));
+    axios.post('/api/auth/users/', data).then(() => {
+      dispatch(login({email: data.email, password: data.password}));
     }).catch(error => {
       dispatch({
         type: REGISTER_FAILURE,
