@@ -11,10 +11,23 @@ export class OfferingsTimeline extends Component {
     dayOfferings.sort((a, b) => {
       return (moment(a.times[0].start, "HH:mm:ss").diff(moment(b.times[0].start, "HH:mm:ss"), 'hours', true) > 0)
     })
-    dayOfferings.map(offering => {
-      const duration = moment(offering.times[0].finish, "HH:mm:ss").diff(moment(offering.times[0].start, "HH:mm:ss"), 'hours', true);
-
-    })
+    var cells = []
+    var i = moment("07:00:00", "HH:mm:ss")
+    while (i.isBefore(moment("20:00:00", "HH:mm:ss"))) {
+      for (let j = 0; j < dayOfferings.length; j++) {
+        const duration = moment(dayOfferings[j].times[0].finish, "HH:mm:ss").diff(moment(dayOfferings[j].times[0].start, "HH:mm:ss"), 'hours', true);
+        if (moment(dayOfferings[j].times[0].start, "HH:mm:ss").isSame(i)) {
+          cells.push(<TableCell colSpan={duration*2} style={{background: 'skyblue'}}>{dayOfferings[j].course.name}</TableCell>)
+          i = i.add(duration, 'hours')
+          for (let k = 0; k < duration*2; k++) {
+            cells.push(<TableCell colSpan={0} style={{display: 'none'}}></TableCell>)
+          }
+        }
+      }
+      cells.push(<TableCell></TableCell>)
+      i = i.add(30, 'minutes')
+    }
+    return cells;
   }
   render() {
     return (
@@ -54,148 +67,23 @@ export class OfferingsTimeline extends Component {
           <TableBody>
             <TableRow style={{height: '20%'}}>
               <TableCell>شنبه</TableCell>
-              {this.props.offerings && this.renderDay(1)}
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell colSpan={3}>درس فلان</TableCell>
-              <TableCell colSpan={0} style={{display: 'none'}}></TableCell>
-              <TableCell colSpan={0} style={{display: 'none'}}></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
+              {this.props.offerings && this.renderDay(0)}
             </TableRow>
             <TableRow style={{height: '20%'}}>
               <TableCell>یک‌شنبه</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell colSpan={3}>درس فلان</TableCell>
-              <TableCell colSpan={0} style={{display: 'none'}}></TableCell>
-              <TableCell colSpan={0} style={{display: 'none'}}></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
+              {this.props.offerings && this.renderDay(1)}
             </TableRow>
             <TableRow style={{height: '20%'}}>
               <TableCell>دوشنبه</TableCell>
-              <TableCell colSpan={3}>درس فلان</TableCell>
-              <TableCell colSpan={0} style={{display: 'none'}}></TableCell>
-              <TableCell colSpan={0} style={{display: 'none'}}></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
+              {this.props.offerings && this.renderDay(2)}
             </TableRow>
             <TableRow style={{height: '20%'}}>
               <TableCell>سه‌شنبه</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell colSpan={3}>درس فلان</TableCell>
-              <TableCell colSpan={0} style={{display: 'none'}}></TableCell>
-              <TableCell colSpan={0} style={{display: 'none'}}></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
+              {this.props.offerings && this.renderDay(3)}
             </TableRow>
             <TableRow style={{height: '20%'}}>
               <TableCell>چهارشنبه</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell colSpan={3}>درس فلان</TableCell>
-              <TableCell colSpan={0} style={{display: 'none'}}></TableCell>
-              <TableCell colSpan={0} style={{display: 'none'}}></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
+              {this.props.offerings && this.renderDay(4)}
             </TableRow>
           </TableBody>
         </Table>

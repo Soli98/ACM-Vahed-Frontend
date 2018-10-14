@@ -41,13 +41,13 @@ export class LoginForm extends Component {
 
 	onSubmit(values) {
 		this.props.login(values, () => {
-      this.props.history.push('/dashboard');
+      this.props.history.push('/curriculum');
     });
 	}
 
 	render() {
 		if(this.props.auth.user) {
-			return <Redirect to='/curriculums' />;
+			return <Redirect to='/curriculum' />;
 		}
 		const { handleSubmit } = this.props;
 		return (

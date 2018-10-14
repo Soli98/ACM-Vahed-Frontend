@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../actions/user_actions';
+import { Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import {
     Paper,
@@ -60,116 +61,119 @@ export class SignupForm extends Component {
   }
 
   render() {
-      const { handleSubmit } = this.props;
-      return (
-          <Paper style={{
-            width: '300px',
-            margin: 'auto',
-            padding: '10px',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}>
-              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                  <Typography variant="subheading" color="inherit" noWrap align="center">
-                      ثبت‌نام
-                  </Typography>
-                  <div style={{
-                      margin: '10px auto',
-                  }}>
-                      <Field
-                          fullWidth={true}
-                          name="email"
-                          component={this.renderTextField}
-                          type="email"
-                          label="ایمیل"
-                          inputProps={{
-                              style: {
-                                  direction: 'ltr',
-                              }
-                          }}
-                          required
-                      />
-                  </div>
-
-                  <div style={{
-                      margin: '10px auto',
-                  }}>
-                      <Field
-                          fullWidth={true}
-                          name="username"
-                          component={this.renderTextField}
-                          type="text"
-                          label="نام کاربری"
-                          inputProps={{
-                              style: {
-                                  direction: 'ltr',
-                              }
-                          }}
-                          required
-                      />
-                  </div>
-
-                  <div style={{
-                      margin: '10px auto',
-                  }}>
-                      <Field
-                          fullWidth={true}
-                          name="password"
-                          component={this.renderTextField}
-                          type="password"
-                          label="رمز عبور"
-                          inputProps={{
-                              style: {
-                                  direction: 'ltr',
-                              }
-                          }}
-                          required
-                          />
-                  </div>
-
-                  <div style={{
-                      margin: '10px auto',
-                  }}>
-                      <Field
-                          fullWidth={true}
-                          name="sid"
-                          component={this.renderTextField}
-                          type="number"
-                          label="شماره‌ی دانش‌جویی"
-                          inputProps={{
+    if(this.props.auth.user) {
+        return <Redirect to='/curriculum' />;
+    }
+    const { handleSubmit } = this.props;
+    return (
+        <Paper style={{
+        width: '300px',
+        margin: 'auto',
+        padding: '10px',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        }}>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <Typography variant="subheading" color="inherit" noWrap align="center">
+                    ثبت‌نام
+                </Typography>
+                <div style={{
+                    margin: '10px auto',
+                }}>
+                    <Field
+                        fullWidth={true}
+                        name="email"
+                        component={this.renderTextField}
+                        type="email"
+                        label="ایمیل"
+                        inputProps={{
                             style: {
                                 direction: 'ltr',
                             }
-                          }}
-                          />
-                  </div>
-                  {/* <div>
-                    {!!this.props.auth.errorMessage && this.props.auth.errorMessage.username.map((error, i) => {
-                    return(
-                        <li key={i}>
-                        {error}
-                        </li>
-                    );
-                    })}
-                  </div> */}
-                  <div>
-                    <Button
-                        fullWidth={true}
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                        style={{
-                            marginTop: '10px'
                         }}
-                        >
-                        ثبت‌نام
-                    </Button>
-                  </div>
-              </form>
-          </Paper>
-      );
+                        required
+                    />
+                </div>
+
+                <div style={{
+                    margin: '10px auto',
+                }}>
+                    <Field
+                        fullWidth={true}
+                        name="username"
+                        component={this.renderTextField}
+                        type="text"
+                        label="نام کاربری"
+                        inputProps={{
+                            style: {
+                                direction: 'ltr',
+                            }
+                        }}
+                        required
+                    />
+                </div>
+
+                <div style={{
+                    margin: '10px auto',
+                }}>
+                    <Field
+                        fullWidth={true}
+                        name="password"
+                        component={this.renderTextField}
+                        type="password"
+                        label="رمز عبور"
+                        inputProps={{
+                            style: {
+                                direction: 'ltr',
+                            }
+                        }}
+                        required
+                        />
+                </div>
+
+                <div style={{
+                    margin: '10px auto',
+                }}>
+                    <Field
+                        fullWidth={true}
+                        name="sid"
+                        component={this.renderTextField}
+                        type="number"
+                        label="شماره‌ی دانش‌جویی"
+                        inputProps={{
+                        style: {
+                            direction: 'ltr',
+                        }
+                        }}
+                        />
+                </div>
+                {/* <div>
+                {!!this.props.auth.errorMessage && this.props.auth.errorMessage.username.map((error, i) => {
+                return(
+                    <li key={i}>
+                    {error}
+                    </li>
+                );
+                })}
+                </div> */}
+                <div>
+                <Button
+                    fullWidth={true}
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    style={{
+                        marginTop: '10px'
+                    }}
+                    >
+                    ثبت‌نام
+                </Button>
+                </div>
+            </form>
+        </Paper>
+    );
   }
 }
 
