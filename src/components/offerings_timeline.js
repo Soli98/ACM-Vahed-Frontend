@@ -48,7 +48,7 @@ export class OfferingsTimeline extends Component {
               <TableCell padding="none"></TableCell>
               <TableCell padding="none">۱۲</TableCell>
               <TableCell padding="none"></TableCell>
-              <TableCell padding="none">۱۲</TableCell>
+              <TableCell padding="none">۱۳</TableCell>
               <TableCell padding="none"></TableCell>
               <TableCell padding="none">۱۴</TableCell>
               <TableCell padding="none"></TableCell>
