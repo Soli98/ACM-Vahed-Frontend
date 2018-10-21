@@ -9,8 +9,9 @@ import { addOfferingToCurriculum, deleteOfferingFromCurriculum } from '../action
 
 export class Dashboard extends Component {
   componentWillMount() {
-    if(!this.props.curr) {
+    if(!this.props.curr || (this.props.curr.id !== this.props.match.params.id)) {
       this.props.fetchCurriculum(this.props.match.params.id);
+      console.log("fetched", this.props.match.params.id)
     }
   }
 

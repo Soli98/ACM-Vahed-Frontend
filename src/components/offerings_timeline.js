@@ -9,15 +9,16 @@ export class OfferingsTimeline extends Component {
       return offering.times.filter(o => o.day === num).length > 0;
     });
     dayOfferings.sort((a, b) => {
-      return (moment(a.times[0].start, "HH:mm:ss").diff(moment(b.times[0].start, "HH:mm:ss"), 'hours', true) > 0)
+      return (moment(a.times[0].start, "HH:mm:ss").isBefore(moment(b.times[0].start, "HH:mm:ss")) ? -1 : 1)
     })
+    console.log("sorted:", dayOfferings);
     var cells = []
     var i = moment("07:00:00", "HH:mm:ss")
     while (i.isBefore(moment("20:00:00", "HH:mm:ss"))) {
       for (let j = 0; j < dayOfferings.length; j++) {
         const duration = moment(dayOfferings[j].times[0].finish, "HH:mm:ss").diff(moment(dayOfferings[j].times[0].start, "HH:mm:ss"), 'hours', true);
         if (moment(dayOfferings[j].times[0].start, "HH:mm:ss").isSame(i)) {
-          cells.push(<TableCell colSpan={duration*2} style={{background: 'skyblue'}}>{dayOfferings[j].course.name}</TableCell>)
+          cells.push(<TableCell colSpan={duration*2} style={{background: 'turquoise', border: '1px solid MediumTurquoise'}}>{dayOfferings[j].course.name}</TableCell>)
           i = i.add(duration, 'hours')
           for (let k = 0; k < duration*2; k++) {
             cells.push(<TableCell colSpan={0} style={{display: 'none'}}></TableCell>)

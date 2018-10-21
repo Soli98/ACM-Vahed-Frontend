@@ -16,16 +16,17 @@ export function login(credentials, callback) {
     
     axios.post('/api/auth/users/login/', credentials).then(res => {
       localStorage.authToken = res.data.token
+      console.log("Token Saved.");
       dispatch({
         type: LOGIN_SUCCESS,
         user: res.data
       });
       callback();
     }).catch(error => {
-      dispatch({
-        type: LOGIN_FAILURE,
-        errorMessage: error.response.data
-      })
+      // dispatch({
+      //   type: LOGIN_FAILURE,
+      //   errorMessage: error.response.data
+      // })
     })
   }
 }
@@ -48,16 +49,11 @@ export function signup(data) {
   }
 }
 
-export function fetchUser() {
+export function fetchUser(token) {
   return dispatch => {
-    var username = jwtDecode(localStorage.authToken).username;
-    axios.get(`/api/user/${username}/`).then(res => {
       dispatch({
         type: LOGIN_SUCCESS,
-        user: res.data
+        user: token
       })
-    }).catch(error => {
-      console.log("ERROR")
-    })
   }
 }

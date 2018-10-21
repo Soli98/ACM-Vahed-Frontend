@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
 import { IconButton } from '@material-ui/core';
@@ -19,7 +20,7 @@ export class ChosenOfferingsTable extends Component {
           <TableCell numeric>{offering.course.credits}</TableCell>
           <TableCell numeric>{offering.course.course_id}-{offering.offering_id}</TableCell>
           <TableCell numeric>{offering.capacity}</TableCell>
-          <TableCell numeric></TableCell>
+          <TableCell numeric>{offering.exam_date && moment(offering.exam_date).format("YY-MM-DD")}</TableCell>
         </TableRow>
       )
     });
@@ -29,7 +30,7 @@ export class ChosenOfferingsTable extends Component {
     return (
       <div style={{overflowX: 'auto'}}>
         <Typography variant="title" align="center" style={{padding: '10px'}}>دروس انتخاب‌شده</Typography>
-        <Table style={{minWidth: '700px'}}>
+        <Table style={{minWidth: '700px', overflowY: 'scroll'}}>
           <TableHead>
             <TableRow>
               <TableCell></TableCell>

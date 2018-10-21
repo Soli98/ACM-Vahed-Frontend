@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../actions/user_actions';
 import { Field, reduxForm } from 'redux-form';
@@ -99,13 +99,7 @@ export class LoginForm extends Component {
 							/>
 					</div>
           <div>
-            {this.props.auth.errorMessage && this.props.auth.errorMessage.map((error, i) => {
-              return(
-                <li key={i}>
-                  {error}
-                </li>
-              );
-            })}
+            {this.props.auth.errorMessage}
           </div>
 					<div>
 						<Button
@@ -119,6 +113,18 @@ export class LoginForm extends Component {
 							}}
 							>
 							{this.props.auth.isAuthenticating ? "در حال ورود" : "ورود"}
+						</Button>
+						<Button
+							fullWidth={true}
+							component={Link}
+							to="/signup"
+							variant="contained"
+							color="secondary"
+							style={{
+								marginTop: '10px'
+							}}
+							>
+							ثبت‌نام
 						</Button>
 					</div>
 				</form>

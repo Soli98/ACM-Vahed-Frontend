@@ -23,11 +23,16 @@ export class Curriculums extends Component {
   };
 
   componentDidMount() {
-      console.log(this.props)
-    this.props.fetchCurriculums();
+    console.log("Curriculums Mounted.");
+    if(!!localStorage.authToken) {
+      this.props.fetchCurriculums();
+    } else {
+      window.location.reload()
+    }
   }
 
   renderCurriculums() {
+    
     return  _.map(this.props.curriculums, (curriculum) => {
       return (
         <ListItem button key={curriculum.id} onClick={(e) => this.props.history.push(`/curriculum/${curriculum.id}`)}>

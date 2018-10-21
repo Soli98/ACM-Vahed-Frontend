@@ -1,20 +1,35 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 import { connect } from 'react-redux'
 import { TextField, Select, Button, FormControl, MenuItem, List, ListItem, Typography, Divider, InputLabel, ListItemText } from '@material-ui/core';
 import { searchOffering } from '../actions/curriculum_actions';
+import Tooltip from '@material-ui/core/Tooltip';
+import Axios from 'axios';
+import { config } from '../actions/curriculum_actions';
 
 export class OfferingsSearch extends Component {
   state = {
     name: '',
     type: '',
+    hoveredCourseDetail: ''
+  }
+
+  fetchCourseDetails(id) {
+    axios.get(`/api/offering/${id}`, config)
+      .then(res => {
+        console.log(res.data.id)
+        this.setState({hoveredCourseDetail: `${res.data.teacher}`})
+      })
   }
 
   renderResults() {
     return this.props.results.map(result => {
       return (
-      <ListItem dense key={result.id} button onClick={() => this.props.addOfferingToCurriculum(result.id)}>
-        <ListItemText primary={result.course.name} />
-      </ListItem>
+        <Tooltip key={result.id} placement='left' title={this.state.hoveredCourseDetail} onOpen={() => this.fetchCourseDetails(result.id)}>
+          <ListItem dense  button onClick={() => this.props.addOfferingToCurriculum(result.id)}>
+            <ListItemText primary={result.course.name} />
+          </ListItem>
+        </Tooltip>
       )
     });
   }
@@ -45,12 +60,12 @@ export class OfferingsSearch extends Component {
               value={this.state.type}
               onChange={(e) => this.handleChange(e)}
             >
-              <MenuItem value="0">اختصاصی</MenuItem>
+              <MenuItem value="0" defaultValue>اختصاصی</MenuItem>
               <MenuItem value="1">عمومی</MenuItem>
               <MenuItem value="2">علوم‌پایه</MenuItem>
             </Select>
           </FormControl>
-          <Button onClick={() => this.props.searchOffering(this.state)} color="primary" fullWidth>
+          <Button onClick={() => this.props.searchOffering({name: this.state.name, type: this.state.type})} color="primary" fullWidth>
             بگرد
           </Button>
         </div>
