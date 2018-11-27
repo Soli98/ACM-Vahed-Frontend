@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { logout } from '../actions/user_actions';
-import { AppBar, Toolbar, Typography, IconButton, Button } from '@material-ui/core';
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 
 export class Header extends Component {
   render() {

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
 
 const LOGIN_REQUEST = "LOGIN_REQUEST";
 const LOGIN_FAILURE = "LOGIN_FAILURE";
@@ -23,10 +22,10 @@ export function login(credentials, callback) {
       });
       callback();
     }).catch(error => {
-      // dispatch({
-      //   type: LOGIN_FAILURE,
-      //   errorMessage: error.response.data
-      // })
+      dispatch({
+        type: LOGIN_FAILURE,
+        errorMessage: error.response.data
+      })
     })
   }
 }

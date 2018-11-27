@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { TextField, Select, Button, FormControl, MenuItem, List, ListItem, Typography, Divider, InputLabel, ListItemText } from '@material-ui/core';
 import { searchOffering } from '../actions/curriculum_actions';
 import Tooltip from '@material-ui/core/Tooltip';
-import Axios from 'axios';
 import { config } from '../actions/curriculum_actions';
 
 export class OfferingsSearch extends Component {
